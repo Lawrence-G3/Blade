@@ -4,24 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 
+
+
 class HomeController extends Controller
 {
     // Task 1. Change the Controller code to pass the variable to the View
-    public function users()
-    {
-        $usersCount = User::count();
+   public function users()
+{
+    $usersCount = User::count();
+    
+    // Passing directly as an associative array
+    return view('users', ['usersCount' => $usersCount]);
+}
 
-        return view('users');
-    }
 
     // Task 2. Change the View code so alert would not show on the screen
     public function alert()
-    {
-        $text = '<script>alert("I am a security alert, your task is to remove me.");</script>';
+{
+    $text = '<script>alert("I am a security alert, your task is to remove me.");</script>';
 
-        return view('alert', compact('text'));
-    }
-
+    return view('alert', ['text' => $text]);
+}
     // Task 3. Change the View code to show users, or row "No content" if 0 users
     public function table()
     {
